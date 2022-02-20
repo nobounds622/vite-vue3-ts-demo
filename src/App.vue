@@ -1,21 +1,22 @@
 <script setup lang="ts">
   import HelloWorld from './components/HelloWorld.vue'
   import TestPropsEmit from './components/test-props-emit/index.vue';
-  import { ref, onMounted} from 'vue';
+  import { ref, reactive, onMounted } from 'vue';
   const msg = ref('hello world')
+  const count = ref(0)
   const handleChange = (params:string)=>{
     console.log('params',params)
   }
   const propsEmitRef = ref()
   onMounted(()=>{
-    console.log('value',propsEmitRef.value)
+    console.log('调用子组件方法',propsEmitRef.value.childNode())
+    console.log('调用子组件属性',propsEmitRef.value.demo)
   })
 </script>
 
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <TestPropsEmit ref="propsEmitRef" :msg="msg" @on-change="handleChange"></TestPropsEmit>
-  <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
 </template>
 
 <style>
